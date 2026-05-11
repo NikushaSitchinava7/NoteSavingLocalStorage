@@ -748,15 +748,13 @@
 let createbtn = document.getElementById("btncreate");
 let notesdiv = document.querySelector(".notesdiv");
 
-// Load saved notes (safe fallback)
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-// Render saved notes on page load
 notes.forEach(text => {
   createNote(text);
 });
 
-// Create note function
+
 function createNote(content = "") {
   let div = document.createElement("div");
   let text = document.createElement("textarea");
@@ -772,17 +770,17 @@ function createNote(content = "") {
   div.appendChild(imgdiv);
   notesdiv.appendChild(div);
 
-  // auto-save when typing
+
   text.addEventListener("input", saveNotes);
 
-  // delete note
+
   imgdiv.addEventListener("click", () => {
     div.remove();
     saveNotes();
   });
 }
 
-// Save all notes to localStorage
+
 function saveNotes() {
   let notes = [];
 
@@ -793,7 +791,6 @@ function saveNotes() {
   localStorage.setItem("notes", JSON.stringify(notes));
 }
 
-// Create new note button
 createbtn.addEventListener("click", () => {
   createNote("");
   saveNotes();
